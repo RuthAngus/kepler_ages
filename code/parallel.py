@@ -49,9 +49,10 @@ def infer_stellar_age(df):
              (1./df["parallax"])*1e3, df["Av"]]
 
     # Set up the star object
-    iso_star = sd.Star(iso_params, Av=df["Av"], Av_err=df["Av_std"])
+    iso_star = sd.Star(iso_params, Av=df["Av"], Av_err=df["Av_std"],
+                       filename=iso_fn)
     gyro_star = sd.Star(iso_params, prot=df["Prot"], prot_err=df["e_Prot"],
-                        Av=df["Av"], Av_err=df["Av_std"])
+                        Av=df["Av"], Av_err=df["Av_std"], filename=gyro_fn)
 
     # Run the MCMC
     iso_sampler = iso_star.fit(inits=inits, max_n=300000, save_samples=True)
