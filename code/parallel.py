@@ -33,17 +33,17 @@ def infer_stellar_age(df):
 
     # Infer an age with isochrones and gyrochronology.
 
-    gyro_fn = "{}_gyro".format(str(int(df["ID"])).zfill(9))
-    iso_fn = "{}_iso".format(str(int(df["ID"])).zfill(9))
+    gyro_fn = "{}_gyro".format(str(int(df["kepid"])).zfill(9))
+    iso_fn = "{}_iso".format(str(int(df["kepid"])).zfill(9))
 
     # Get initialization
-    bprp = df["phot_bp_mean_mag"] - df["phot_rp_mean_mag.values"]
+    bprp = df["phot_bp_mean_mag"] - df["phot_rp_mean_mag"]
     log10_period = np.log10(df["Prot"])
     log10_age_yrs = age_model(log10_period, bprp)
     gyro_age = (10**log10_age_yrs)*1e-9
 
     eep = mist.get_eep(df["koi_smass"], np.log10(gyro_age*1e9),
-                       df"[cks_smet"], accurate=True)
+                       df["cks_smet"], accurate=True)
 
     inits = [eep, np.log10(gyro_age*1e9), df["cks_smet"],
              (1./df["parallax"])*1e3, df["Av"]]
