@@ -33,8 +33,8 @@ def infer_stellar_age(df):
 
     # Infer an age with isochrones and gyrochronology.
 
-    gyro_fn = "{}_gyro".format(str(int(df["kepid"])).zfill(9))
-    iso_fn = "{}_iso".format(str(int(df["kepid"])).zfill(9))
+    gyro_fn = "samples/{}_gyro".format(str(int(df["kepid"])).zfill(9))
+    iso_fn = "samples/{}_iso".format(str(int(df["kepid"])).zfill(9))
 
     # Get initialization
     bprp = df["phot_bp_mean_mag"] - df["phot_rp_mean_mag"]
