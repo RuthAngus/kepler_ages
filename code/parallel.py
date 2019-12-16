@@ -29,7 +29,7 @@ def infer_stellar_age(df):
                   "teff": (df["cks_steff"], df["cks_steff_err1"]),
                   "feh": (df["cks_smet"], df["cks_smet_err1"]),
                   "logg": (df["cks_slogg"], df["cks_slogg_err1"]),
-                  "parallax": (df["parallax"], df["parallax_error"]}
+                  "parallax": (df["parallax"], df["parallax_error"])}
 
     # Infer an age with isochrones and gyrochronology.
 
